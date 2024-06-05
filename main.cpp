@@ -1,40 +1,33 @@
 #include "Enigma.h"
-#include <iostream>
-#include <string>
-
 
 int main() {
-    // Example Enigma machine setup
-    EnigmaMachine enigma("EKMFLGDQVZNTOWYHXUSPAIBRCJ", "AJDKSIRUXBLHWTMCQGZNPYFVOE", "BDFHJLCPRTXVZNYEIWGAKMUSQO", "YRUHQSLDPXNGOKMIEBFZCWVJAT");
-    enigma.setRotorPositions(5, 7, 21);
+    // Define rotor and reflector wirings
+    std::string rotor1Wiring = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
+    std::string rotor2Wiring = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
+    std::string rotor3Wiring = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
+    std::string reflectorWiring = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
 
-    std::string message = "Esto es un mensaje que jamas van a poder leer los alemanes.";
+    // Initialize the Enigma machine with rotor and reflector wirings
+    EnigmaMachine enigma(rotor1Wiring, rotor2Wiring, rotor3Wiring, reflectorWiring);
+
+    // Set initial rotor positions
+    enigma.setRotorPositions(0, 0, 0); // Positions for rotor1, rotor2, and rotor3
+
+    // Add plugboard mappings
+    enigma.addPlugboardMapping('A', 'B');
+    enigma.addPlugboardMapping('C', 'D');
+
+    // Encode a single character
+    char encodedChar = enigma.encode('H');
+    std::cout << "Encoded Character: " << encodedChar << std::endl;
+
+    // Encode a string
+    std::string message = "HELLO";
     std::string encodedMessage;
-    std::string decodedMessage;
-
-
     for (char c : message) {
-        if (isalpha(c)) {
-            encodedMessage += enigma.encode(toupper(c));
-        } else {
-            encodedMessage += c;
-        }
+        encodedMessage += enigma.encode(c);
     }
-
     std::cout << "Encoded Message: " << encodedMessage << std::endl;
-
-    // Reset rotor positions
-    enigma.setRotorPositions(5, 7, 21);
-
-    for (char c : encodedMessage) {
-        if (isalpha(c)) {
-            decodedMessage += enigma.decode(toupper(c));
-        } else {
-            decodedMessage += c;
-        }
-    }
-
-    std::cout << "Decoded Message: " << decodedMessage << std::endl;
 
     return 0;
 }
