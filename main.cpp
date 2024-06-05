@@ -11,11 +11,14 @@ int main() {
     EnigmaMachine enigma(rotor1Wiring, rotor2Wiring, rotor3Wiring, reflectorWiring);
 
     // Set initial rotor positions
-    enigma.setRotorPositions(0, 0, 0); // Positions for rotor1, rotor2, and rotor3
+    enigma.setRotorPositions(5, 12, 21); // Positions for rotor1, rotor2, and rotor3
 
     // Add plugboard mappings
     enigma.addPlugboardMapping('A', 'B');
-    enigma.addPlugboardMapping('C', 'D');
+    enigma.addPlugboardMapping('C', 'Z');
+    enigma.addPlugboardMapping('E', 'H');
+    enigma.addPlugboardMapping('T', 'Y');
+    enigma.addPlugboardMapping('M', 'L');
 
     // Encode a single character
     char encodedChar = enigma.encode('H');
