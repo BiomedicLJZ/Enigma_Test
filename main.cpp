@@ -8,7 +8,7 @@ int main() {
     EnigmaMachine enigma("EKMFLGDQVZNTOWYHXUSPAIBRCJ", "AJDKSIRUXBLHWTMCQGZNPYFVOE", "BDFHJLCPRTXVZNYEIWGAKMUSQO", "YRUHQSLDPXNGOKMIEBFZCWVJAT");
     enigma.setRotorPositions(5, 7, 21);
 
-    std::string message = "HELLOENIGMA";
+    std::string message = "Esto es un mensaje que jamas van a poder leer los alemanes.";
     std::string encodedMessage;
     std::string decodedMessage;
 
